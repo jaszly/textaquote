@@ -1,5 +1,6 @@
+require('dotenv').config()
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = TWILIO_AUTH_TOKEN;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
 
 const client = require('twilio')(accountSid, authToken);
 
@@ -16,10 +17,8 @@ let sampleMessages = [
   var randomIndex = Math.floor(Math.random() * sampleMessages.length);
   var randomMessage = sampleMessages[randomIndex];
 
-
-
 client.messages.create({
-  to: '+14158466824',
+  to: process.env.MY_PHONE_NUMBER,
   from: '+15102395031',
   body: "Today's Quote: " + randomMessage
 })
